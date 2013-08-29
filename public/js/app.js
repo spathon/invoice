@@ -1,9 +1,8 @@
 /* global angular */
 'use strict';
 
-
 // Declare app level module which depends on filters, and services
-angular.module('invoiceApp', [
+var invoiceApp = angular.module('invoiceApp', [
     'invoiceApp.filters', 'invoiceApp.services',
     'invoiceApp.directives'
   ]).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -14,3 +13,11 @@ angular.module('invoiceApp', [
     $routeProvider.when('/list', {templateUrl: 'partials/list', controller: 'InvoiceListCtrl'});
     $routeProvider.otherwise({redirectTo: '/'});
   }]);
+
+$(document).on("keydown","[contenteditable=true]",function(e) {
+  if(e.which===13) {
+    var lineBreak = "<br>";
+    document.execCommand("insertHTML",false,lineBreak);
+    return false;
+  }
+});

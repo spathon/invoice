@@ -1,3 +1,115 @@
 
-h1= title
-p Welcome to #{title}
+
+
+.invoice
+  .row.invice-header
+    .col-xs-6
+      h1(contenteditable, ng-model="invoice.company", ng-hide="invoice.logo_img")
+      img(ng-src="invoice.logo_img", ng-show="invoice.logo_img")
+    .col-xs-6
+      h2(contenteditable, ng-model="invoice.invoice")
+
+  .row.invoice-info
+    .col-xs-6
+      .row
+        .col-xs-4
+          strong Ansändare
+        .col-xs-8
+          div(contenteditable="true", ng-model='invoice.address')
+      .row
+        .col-xs-4
+          strong Fakturaadress
+        .col-xs-8
+          div(contenteditable="true", ng-model='invoice.invoiceAddress')
+    .col-xs-6
+      table.table.table-striped.table-bordered
+        tr
+          td
+            strong Fakturanummer:
+          td
+            span(contenteditable="true", ng-model='invoice.invoiceNr')
+        tr
+          td
+            strong Fakturadatum:
+          td
+            span(contenteditable="true", ng-model='invoice.invoiceDate')
+        tr
+          td
+            strong Förfallodatum:
+          td
+            span(contenteditable="true", ng-model='invoice.invoiceLastDate')
+
+  p {{ invoice.message }}
+
+  .invoice-body
+    table.table.table-striped
+      tr
+        th Artikel/Tjänst
+        th Beskrivning
+        th Antal
+        th Á-pris
+        th Belopp
+      tr(ng-repeat="item in invoice.items")
+        td
+          div(contenteditable="true", ng-model='item.name')
+        td
+          div(contenteditable="true", ng-model='item.desc')
+        td
+          div(contenteditable="true", ng-model='item.quantity')
+        td
+          div(contenteditable="true", ng-model='item.price')
+        td {{ item.quantity * item.price }}
+      tr
+        td(colspan="5") &nbsp;
+      tr
+        th(colspan='4') Summa
+        th 200:-
+      tr
+        th(colspan='4') Moms
+          span(contenteditable="true", ng-model='invoice.VAT')
+          | %
+        th 50:-
+      tr
+        th(colspan='4') Total summa
+        th 250:-
+
+  .row.invoice-footer
+    .col-xs-4
+      strong Tel.nr
+      span(contenteditable="true", ng-model='invoice.phone')
+      br
+      strong Hemsida:
+      span(contenteditable="true", ng-model='invoice.webpage')
+      br
+      strong E-post:
+      span(contenteditable="true", ng-model='invoice.email')
+      br
+    .col-xs-4
+      strong Org.nr:
+      span(contenteditable="true", ng-model='invoice.orgNr')
+      br
+      strong VAT/Momsreg.nr:
+      span(contenteditable="true", ng-model='invoice.vatNr')
+      br
+      div
+        strong SWIFT/BIC:
+        span(contenteditable="true", ng-model='invoice.swift')
+        br
+      div
+        strong IBAN:
+        span(contenteditable="true", ng-model='invoice.iban')
+        br
+    .col-xs-4
+      div
+        strong Bankgiro:
+        span(contenteditable="true", ng-model='invoice.bankgiro')
+        br
+      div
+        strong Plusgiro:
+        span(contenteditable="true", ng-model='invoice.plusgiro')
+        br
+      div
+        strong Bankkonto:
+        span(contenteditable="true", ng-model='invoice.bankkonto')
+        br
+  .pull-right Innehar F-skattesedel
