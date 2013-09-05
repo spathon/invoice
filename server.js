@@ -3,10 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var http = require('http');
-var path = require('path');
+var express = require('express'),
+	routes = require('./routes'),
+	http = require('http'),
+	path = require('path'),
+	path = require('path'),
+	mongoose = require('mongoose');
 
 var app = express();
 
