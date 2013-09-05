@@ -7,8 +7,17 @@ var express = require('express'),
 	routes = require('./routes'),
 	http = require('http'),
 	path = require('path'),
-	path = require('path'),
+	fs = require('fs'),
 	mongoose = require('mongoose');
+
+// Connect to DB
+mongoose.connect('mongodb://localhost/invoice');
+
+// Bootstrap models
+var models_path = __dirname + '/models';
+fs.readdirSync(models_path).forEach(function(file) {
+    require(models_path + '/' + file);
+});
 
 var app = express();
 
